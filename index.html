@@ -197,30 +197,48 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
   to { opacity: 1; transform: translateY(0); }
 }
 
-.hero-music {
-  margin-top: 1.5rem;
-  font-family: 'Lora', serif;
-  font-style: italic;
-  text-align: center;
-  cursor: pointer;
+.hero-music-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.hero-music-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  padding: 0.9rem 1.8rem;
+  backdrop-filter: blur(10px);
   color: #fff;
-  opacity: 0.9;
+  font-family: 'Lora', serif;
+  cursor: pointer;
+  text-align: center;
   transition: all 0.3s ease;
 }
 
-.hero-music:hover {
-  opacity: 1;
-  transform: scale(1.05);
+/* text lines */
+.hero-music-btn .line1 {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.hero-music .line1 {
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-}
-
-.hero-music .line2 {
-  font-size: 0.8rem;
+.hero-music-btn .line2 {
+  display: block;
+  font-size: 0.75rem;
   opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* hover effect */
+.hero-music-btn:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.25);
+}
+
+/* active click */
+.hero-music-btn:active {
+  transform: scale(0.97);
 }
 /* COMMON */
 .sec{padding:5.5rem 0;position:relative;}
@@ -602,13 +620,15 @@ footer{padding:3.5rem 2rem 2.5rem;text-align:center;background:var(--bg2);border
     </br>A love story that turned into forever.</p>
     <div class="hero-pill"><span class="pd"></span>Engaged · 15 April 2026 · Indore</div>
   </div>
-  <div class="hero-music" onclick="playMusic()">
-  <span class="line1">Tap to feel our story 🎶</span><br>
-  <span class="line2">Scroll down ↓</span>
+<div class="hero-music-wrap">
+  <button class="hero-music-btn" onclick="playMusic()">
+    <span class="line1">🎶 Tap to play our song</span>
+    <span class="line2">Scroll down ↓</span>
+  </button>
 </div>
 
 <audio id="bgMusic" loop>
-  <source src="song1.mp3" type="audio/mpeg">
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
   <!-- <div class="hero-sc"><div class="sc-bar"></div><span>scroll</span></div> -->
 </section>
