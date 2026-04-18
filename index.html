@@ -196,6 +196,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.hero-music {
+  margin-top: 1.5rem;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.hero-music:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.hero-music .line1 {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-music .line2 {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
 /* COMMON */
 .sec{padding:5.5rem 0;position:relative;}
 .container{max-width:1100px;margin:0 auto;padding:0 2rem;}
@@ -576,9 +602,49 @@ footer{padding:3.5rem 2rem 2.5rem;text-align:center;background:var(--bg2);border
     </br>A love story that turned into forever.</p>
     <div class="hero-pill"><span class="pd"></span>Engaged · 15 April 2026 · Indore</div>
   </div>
+  <div class="hero-music" onclick="playMusic()">
+  <span class="line1">Tap to feel our story 🎶</span><br>
+  <span class="line2">Scroll down ↓</span>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="song1.mp3" type="audio/mpeg">
+</audio>
   <!-- <div class="hero-sc"><div class="sc-bar"></div><span>scroll</span></div> -->
 </section>
+<script>
+  let currentAudio = null;
 
+  function playMusic() {
+    const newAudio = document.getElementById("bgMusic");
+
+    // agar koi aur audio chal raha hai → stop karo
+    if (currentAudio && currentAudio !== newAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // agar same audio hai → toggle play/pause
+    if (newAudio.paused) {
+      newAudio.play();
+      currentAudio = newAudio;
+    } else {
+      newAudio.pause();
+    }
+  }
+
+  // 🔥 auto stop when ANY audio plays
+  document.addEventListener("play", function(e) {
+    const audios = document.getElementsByTagName("audio");
+
+    for (let audio of audios) {
+      if (audio !== e.target) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+  }, true);
+</script>
 <!-- STORY -->
 <section class="story-sec sec" id="story">
   <div class="container">
